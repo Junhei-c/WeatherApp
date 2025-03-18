@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const WeatherList = () => {
   const [weatherData, setWeatherData] = useState([]);
@@ -37,8 +38,10 @@ const WeatherList = () => {
       <ul>
         {weatherData.map((reading) => (
           <li key={reading.station.id}>
-            <strong>{reading.station.name} ({reading.station.id})</strong> - 
-            {reading.townCenter} - {reading.wbgt}°C - {reading.heatStress}
+            <Link to={`/detail/${reading.station.id}`}>
+              <strong>{reading.station.name} ({reading.station.id})</strong> - 
+              {reading.station.townCenter} - {reading.wbgt}°C - {reading.heatStress}
+            </Link>
           </li>
         ))}
       </ul>
@@ -47,6 +50,7 @@ const WeatherList = () => {
 };
 
 export default WeatherList;
+
 
 
 
